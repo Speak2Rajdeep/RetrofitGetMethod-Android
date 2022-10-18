@@ -43,7 +43,8 @@ class MainActivity : AppCompatActivity() {
                     strBuilder.append("\n")
                 }
                 val textView = findViewById<TextView>(R.id.textview)
-                textView.setText(strBuilder)
+                //textView.setText(strBuilder)
+                textView.text = strBuilder
             }
 
             override fun onFailure(call: Call<List<MyDataItem>>, t: Throwable) {
