@@ -12,7 +12,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 const val baseURL = "https://jsonplaceholder.typicode.com/"
 
-
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
