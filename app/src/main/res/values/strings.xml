@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Retrofit_Get</string>
+    <string name="title_str">Title</string>
+    <string name="id_str">ID</string>
+    <string name="loading_please_wait_str">Loading, Please Wait</string>
 </resources>
