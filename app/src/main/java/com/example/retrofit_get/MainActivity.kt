@@ -1,5 +1,6 @@
 package com.example.retrofit_get
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
@@ -28,19 +29,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //making Objects and connecting to the XML IDs
         progressBar = findViewById(R.id.progress)
         loading = findViewById(R.id.loading)
         recyclerView = findViewById(R.id.recycler)
 
-        recycler.setHasFixedSize(true)
+        //Setting Views Layout as Linearlayout
         linearLayoutManager = LinearLayoutManager(this)
         recycler.layoutManager = linearLayoutManager
 
+        //Calling MyAdapter Class with the response
         myAdapter = MyAdapter(baseContext, responseBody)
         getMyData()
+
     }
 
     private fun getMyData() {
+        //Creating Retrofit Object
         val retrofitBuilder = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(baseURL)
@@ -49,11 +54,14 @@ class MainActivity : AppCompatActivity() {
 
         val retrofitData = retrofitBuilder.getData()
 
+        //Calling Retrofit : Enqueue method for queueing the Response
         retrofitData.enqueue(object : Callback<List<MyDataItem>> {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(
                 call: Call<List<MyDataItem>>,
                 response: Response<List<MyDataItem>>
             ) {
+                //Adding Responses to the Response Body and Setting the Visibility of the Progressbar
                 response.body()?.let { responseBody.addAll(it) }
                 myAdapter.notifyDataSetChanged()
                 recycler.adapter = myAdapter
@@ -63,9 +71,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<MyDataItem>>, t: Throwable) {
+                //On Failure Make Toast with Messages
                 Toast.makeText(this@MainActivity, "Wrong : ${t.message}", Toast.LENGTH_LONG).show()
             }
         })
-
     }
 }
