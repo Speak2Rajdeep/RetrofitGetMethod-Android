@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
     private var responseBody: ArrayList<MyDataItem> = ArrayList()
     lateinit var myAdapter: MyAdapter
     lateinit var linearLayoutManager: LinearLayoutManager
-    lateinit var progressBar : ProgressBar
-    lateinit var loading : TextView
+    lateinit var progressBar: ProgressBar
+    lateinit var loading: TextView
     lateinit var recyclerView: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,13 +55,11 @@ class MainActivity : AppCompatActivity() {
                 response: Response<List<MyDataItem>>
             ) {
                 response.body()?.let { responseBody.addAll(it) }
-
                 myAdapter.notifyDataSetChanged()
                 recycler.adapter = myAdapter
                 progressBar.visibility = View.GONE
                 loading.visibility = View.GONE
-                recyclerView.visibility  = View.VISIBLE
-
+                recyclerView.visibility = View.VISIBLE
             }
 
             override fun onFailure(call: Call<List<MyDataItem>>, t: Throwable) {

@@ -4,16 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.row_items.view.*
 
-class MyAdapter(val context : Context,val userList: List<MyDataItem> ) : RecyclerView.Adapter<MyAdapter.ViewHolder>(){
-    class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
-        var id : TextView
-        var title : TextView
+class MyAdapter(val context: Context, val userList: List<MyDataItem>) :
+    RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var id: TextView
+        var title: TextView
 
 
         init {
@@ -24,7 +23,7 @@ class MyAdapter(val context : Context,val userList: List<MyDataItem> ) : Recycle
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var itemView = LayoutInflater.from(context).inflate(R.layout.row_items,parent,false)
+        var itemView = LayoutInflater.from(context).inflate(R.layout.row_items, parent, false)
         return ViewHolder(itemView)
     }
 
